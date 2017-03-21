@@ -1,0 +1,144 @@
+/*
+    Css for rive project
+    Author: Hunter Keca
+*/
+
+/* Reset */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Body */
+body {
+    background: #ECF0F1;   
+}
+
+/* Navbar */
+.navbar {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 60px;
+    padding: 25px 30px;
+    font-weight: 100;
+    color: #2ECC71;
+}
+
+.nav {
+    margin-right: 20px;
+}
+
+.nav li {
+    list-style: none;
+    display: inline;
+    padding: 25px;
+}
+
+.nav li a {
+    font-weight: 100;
+    font-size: 40px;
+    color: #2ECC71;
+    text-decoration: none;
+}
+
+/* Content box */
+.content {
+    margin: 20px auto;
+    background: white;
+    border: 2px solid #2ECC71;
+    max-width: 80%;
+    overflow-y: scroll;
+    max-height: 600px;
+}
+
+
+/* Table style */
+.rive-table {
+    width: 100%;
+    text-align: center;
+    min-height: 200px;
+    
+    overflow-y: scroll;
+}
+
+.rive-table td, th {
+     padding: 15px;
+}
+
+.rive-table thead {
+    border-bottom: 2px solid #2ECC71;
+}
+
+.rive-table th {
+    font-size: 30px;
+    font-weight: 400;
+    color: #2ECC71;
+}
+
+.rive-table td {
+    color: black;
+    font-size: 30px;
+    font-weight: 300;
+    padding: 35px 15px;
+}
+
+.rive-table-edit, .rive-table-remove {
+    font-size: 15px;
+}
+
+.rive-table-edit {
+    text-decoration: none;
+    font-weight: normal;
+    color: #2ECC71;
+    border: 2px solid #2ECC71;
+    border-radius: 20px;
+    padding: 7px 20px;
+}
+
+.rive-table-remove {
+    text-decoration: none;
+    font-weight: normal;
+    color: white;
+    background: #C0392B;
+    border: 2px solid #C0392B;
+    border-radius: 20px;
+    padding: 7px 7px;
+}
+
+
+/* media queries */
+@media only screen and (max-width: 800px) {
+    .rive-table {
+        margin: 0;
+        width:100%;
+    }
+
+    .content {
+        max-width: 100%;
+        margin: 20px 0;
+    }
+
+    .rive-table td {
+        font-size: 17px;
+    }
+
+    .rive-table th {
+        font-size: 20px;
+    }
+
+    .nav {
+        display: none
+    }
+    .navbar {
+        justify-content: center
+    }
+    .col-manage {
+        display: none;
+    }
+}
