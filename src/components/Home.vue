@@ -29,7 +29,7 @@
             <td>{{ person.lastname }}</td>
             <td>{{ person.dob }}</td>
             <td>{{ person.zip }}</td>
-            <td class="col-manage"><a href="#" class="rive-table-edit">Edit</a> <a href="#" class="rive-table-remove">Remove</a></td>
+            <td class="col-manage"><router-link class="rive-table-edit" :to="{ path: '/edit', query: { userName: person.uid}}">Edit</router-link> <a href="#" class="rive-table-remove">Remove</a></td>
           </tr>
         </tbody>
       </table>
@@ -51,7 +51,7 @@
     },
     methods: {
       fetchPersons() {
-        this.$http.get('http://localhost:5000/persons')
+        this.$http.get('http://localhost:8000/public/persons')
           .then(function(response) {
             this.persons = response.body;
             this.isLoading = false;
@@ -73,7 +73,7 @@
   .loading {
     font-size: 36px;
     color: #2ECC71;
-    font-weight: normal;
+    font-weight: 100;
     text-align: center;
     padding: 25px;
   }

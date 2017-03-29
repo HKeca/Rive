@@ -18,7 +18,7 @@
         <ul>
           <li>+ NodeJS</li><br>
           <li>+ VueJs</li><br>
-          <li>+ Python</li><br>
+          <li>+ PHP</li><br>
           <li>+ MySQL</li>
         </ul>
       </p>

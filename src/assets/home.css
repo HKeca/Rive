@@ -98,7 +98,7 @@ body {
     color: #2ECC71;
     border: 2px solid #2ECC71;
     border-radius: 20px;
-    padding: 7px 20px;
+    padding: 8px 20px;
 }
 
 .rive-table-remove {
@@ -108,9 +108,18 @@ body {
     background: #C0392B;
     border: 2px solid #C0392B;
     border-radius: 20px;
-    padding: 7px 7px;
+    padding: 8px 20px;
 }
 
+.rive-table-edit:hover {
+    background: #2ECC71;
+    color: white;
+}
+
+.rive-table-remove:hover {
+    background: #9A1204;
+    border: 2px solid #9A1204;
+}
 
 /* media queries */
 @media only screen and (max-width: 800px) {
