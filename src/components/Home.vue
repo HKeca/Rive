@@ -29,7 +29,7 @@
             <td>{{ person.lastname }}</td>
             <td>{{ person.dob }}</td>
             <td>{{ person.zip }}</td>
-            <td class="col-manage"><router-link class="rive-table-edit" :to="{ path: '/edit', query: { userName: person.uid}}">Edit</router-link> <a href="#" class="rive-table-remove">Remove</a></td>
+            <td class="col-manage"><router-link class="rive-table-edit" :to="{ name: 'EditUser', params: { u: person.uid}}">Edit</router-link> <a href="#" class="rive-table-remove">Remove</a></td>
           </tr>
         </tbody>
       </table>
