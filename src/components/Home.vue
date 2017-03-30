@@ -51,7 +51,7 @@
     },
     methods: {
       fetchPersons() {
-        this.$http.get('http://localhost:8000/public/persons')
+        this.$http.get('http://localhost:8000/persons')
           .then(function(response) {
             this.persons = response.body;
             this.isLoading = false;

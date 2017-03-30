@@ -13,10 +13,13 @@
             <!-- ./nav -->
         </div>
         <!-- ./navbar -->
-        <h1 class="loading" v-if="isLoading == true">Loading...</h1>
+        <h1 style="text-align: center; color: #2ECC71; padding-top: 15px;" class="loading" v-if="isLoading == true">Loading...</h1>
         <div class="editor">
             <form class="editor-form">
-                <h1 style="text-align: center;">User Id:<br>{{ userData.uid }} </h1>
+                <div class="form-group">
+                    <label for="userId">User ID:</label>
+                    <input type="text" class="editor-text" id="userId" :value="userData.uid" disabled>
+                </div>
                 <div class="form-group">
                     <label for="firstName">First Name:</label>
                     <input type="text" class="editor-text" id="firstName" :value="userData.firstname">
@@ -34,6 +37,7 @@
                     <input type="text" class="editor-text" id="dob" :value="userData.zip">
                 </div>
             </form>
+            <!-- ./form -->
         </div>
         <!-- ./editor -->
     </div>
@@ -50,12 +54,15 @@
         },
         methods: {
             getUser() {
+                // Get user id
                 var p = this.$route.params.u;
+
+                // Get the user data
                 this.fetchPerson(p);
             },
 
             fetchPerson(person) {
-                this.$http.get('http://localhost:8000/public/uid/' + person)
+                this.$http.get('http://localhost:8000/uid/' + person)
                     .then(function (response) {
                         this.userData = response.body;
                         this.isLoading = false;
@@ -73,6 +80,7 @@
     .form-group {
         padding: 20px;
         display: flex;
+        align-items: center;
         justify-content: center;
     }
 
@@ -83,9 +91,15 @@
     }
 
     .editor-form label {
-        padding: 20px;
+        padding: 15px;
         font-size: 1.5em;
         color: #2ECC71;
+        text-align: left !important;
+    }
+
+    .editor-form input:focus {
+        outline: none;
+        border: 2px solid #2ECC71;
     }
 
     .editor-form input {
@@ -97,10 +111,8 @@
         
     }
     .editor {
+        border: 2px solid #2ECC71;
         background: white;
         margin: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 </style>
