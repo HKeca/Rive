@@ -18,23 +18,27 @@
             <form class="editor-form">
                 <div class="form-group">
                     <label for="userId">User ID:</label>
-                    <input type="text" class="editor-text" id="userId" :value="userData.uid" disabled>
+                    <input type="text" class="editor-text" v-model="userId" disabled>
                 </div>
                 <div class="form-group">
                     <label for="firstName">First Name:</label>
-                    <input type="text" class="editor-text" id="firstName" :value="userData.firstname">
+                    <input type="text" class="editor-text" v-model="firstName">
                 </div>
                 <div class="form-group">
                     <label for="lastName">First Name:</label>
-                    <input type="text" class="editor-text" id="lastName" :value="userData.lastname">
+                    <input type="text" class="editor-text" v-model="lastName">
                 </div>
                 <div class="form-group">
                     <label for="dob">Date of birth:</label>
-                    <input type="text" class="editor-text" id="dob" :value="userData.dob">
+                    <input type="text" class="editor-text" v-model="dob">
                 </div>
                 <div class="form-group">
                     <label for="zip">Zip Code:</label>
-                    <input type="text" class="editor-text" id="dob" :value="userData.zip">
+                    <input type="text" class="editor-text" v-model="zipCode">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-save" v-on:click="savePerson">Save</button>
+                    <router-link to="/" class="btn btn-cancel">Cancel</router-link>
                 </div>
             </form>
             <!-- ./form -->
@@ -48,14 +52,20 @@
         name: 'EditUser',
         data() {
             return {
-                userData: [],
-                isLoading: true
+                // User data
+                userId: '',
+                firstName: '',
+                lastName: '',
+                dob: '',
+                zipCode: '',
+                // is loading?
+                isLoading: true,
             }
         },
         methods: {
             getUser() {
                 // Get user id
-                var p = this.$route.params.u;
+                var p = this.$route.params.userId;
 
                 // Get the user data
                 this.fetchPerson(p);
@@ -64,12 +74,40 @@
             fetchPerson(person) {
                 this.$http.get('http://localhost:8000/uid/' + person)
                     .then(function (response) {
-                        this.userData = response.body;
+                        // store user data
+                        let userData = response.body;
+                        // set user data to vars
+                        this.userId = userData.uid;
+                        this.firstName = userData.firstname;
+                        this.lastName = userData.lastname;
+                        this.dob = userData.dob;
+                        this.zipCode = userData.zip;
+                        // Not loading anymore
                         this.isLoading = false;
+                    }).catch(err => {
+                        console.log(err);
                     });
             },
+
+            savePerson() {
+                let updateData = {
+                    uid: this.userId,
+                    firstname: this.firstName,
+                    lastname: this.lastName,
+                    dob: this.dob,
+                    zip: this.zipCode
+                };
+
+                this.$http.put('http://localhost:8000/update', this.updateData, {
+                    emulateJSON: true
+                }).then(response => {
+                    console.log(response);
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
         },
-        created: function () {
+        created: function () {  
             this.getUser();
         }
     }
@@ -77,8 +115,10 @@
 </script>
 
 <style scoped>
+    /* I know its bad :( */
+
+
     .form-group {
-        padding: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -114,5 +154,30 @@
         border: 2px solid #2ECC71;
         background: white;
         margin: 20px;
+    }
+
+    .btn {
+        border: none;
+        background: transparent;
+        font-size: 25px;
+        padding: 0 25px;
+    }
+
+    .btn-save {
+        border: 2px solid #2ECC71;
+        color: #2ECC71;
+        cursor: pointer;
+        padding: 5px 15px;
+    }
+
+    .btn-save:hover {
+        background: #2ECC71;
+        color: white;
+    }
+
+    .btn-cancel {
+        text-decoration: none;
+        cursor: pointer;
+        color: #C0392B;
     }
 </style>
